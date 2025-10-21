@@ -1,0 +1,38 @@
+# 全局配置（按照你的单卡 + 5 小时数据做的默认）
+data:
+  wav_dir: ./data/wavs
+  sample_rate: 24000
+  window_sec: 10.0
+  hop_sec: 5.0
+  latent_dir: ./data/latents
+  distill_target_dir: ./data/distill_targets
+
+encodec:
+  bitrate: 6000
+
+teacher:
+  hf_model_id: "cvssp/audioldm-m-full"  # Hugging Face pretrained teacher
+  use_diffusers_pipeline: true         # 尝试从 diffusers 加载 pipeline；若失败请改为 false 并按 README 使用作者 repo
+  T: 200                               # teacher noise timesteps (训练采样 schedule)
+  dropout: 0.0
+  lr: 1e-5
+  batch_size: 4
+  num_epochs: 20
+
+distillation:
+  halfing_schedule: [200,100,50,25,12,8]
+  final_steps: 8
+  student_scale: 0.25
+  student_lr: 5e-5
+  epochs_per_stage: 5000
+
+training:
+  device: "cuda"
+  num_workers: 4
+  grad_accum_steps: 1
+  mixed_precision: true
+
+logging:
+  ckpt_dir: ./checkpoints
+  samples_dir: ./samples
+  sample_every_steps: 1000

@@ -1,0 +1,19 @@
+torch>=2.0.0
+torchaudio>=2.0.0
+diffusers>=0.21.0
+transformers>=4.30.0
+huggingface_hub
+encodec>=0.1.3
+numpy
+scipy
+soundfile
+librosa
+pyloudnorm
+pyyaml
+tqdm
+einops
+matplotlib
+scikit-learn
+ffmpeg-python
+# Optional: for FAD (Google impl)
+tensorflow==2.12.0
